@@ -1,4 +1,7 @@
 <?php
+header("Content-Type: application/json; charset=UTF-8");
+session_start();
+if(isset($_SESSION["data"]) && !empty($_SESSION["data"])){ echo $_SESSION["data"];exit();}
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, 'https://www.btpn.com/en/prime-lending-rate/kurs');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -13,6 +16,7 @@ foreach($data[1] as $k => $v){
 		'sell' => ceil(preg_replace('/,/','',$data[4][$k])),
 	);
 }
-header("Content-Type: application/json; charset=UTF-8");
-echo json_encode($rate,JSON_PRETTY_PRINT);
+$result = json_encode($rate,JSON_PRETTY_PRINT);
+$_SESSION["data"] = $result;
+echo $result;
 ?>
