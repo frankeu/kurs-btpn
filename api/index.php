@@ -1,5 +1,6 @@
 <?php
-header("Content-Type: application/json; charset=UTF-8");
+header("Content-Type: application/json; charset=UTF-8")
+header("Access-Control-Allow-Origin: *");;
 session_start();
 if(isset($_SESSION["data"]) && !empty($_SESSION["data"])){ echo $_SESSION["data"];exit();}
 $ch = curl_init();
