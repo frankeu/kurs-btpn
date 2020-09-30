@@ -17,7 +17,7 @@ foreach($data[1] as $k => $v){
 		'sell' => ceil(preg_replace('/,/','',$data[4][$k]))+500,
 	);
 }
-$result = json_encode($rate,JSON_PRETTY_PRINT);
+$result = json_encode($rate);
 $_SESSION["data"] = $result;
 echo $result;
 ?>
