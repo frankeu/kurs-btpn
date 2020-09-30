@@ -13,7 +13,7 @@ foreach($data[1] as $k => $v){
 	if($data[2][$k] != 'IDR'){ continue; }
 	$rate[] = array(
 		'currency' => $data[1][$k],
-		'buy' => ceil(preg_replace('/,/','',$data[3][$k]))+500,
+		'buy' => ceil(preg_replace('/,/','',$data[3][$k])),
 		'sell' => ceil(preg_replace('/,/','',$data[4][$k]))+500,
 	);
 }
