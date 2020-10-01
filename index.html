@@ -1,49 +1,50 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Form</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Form</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+background-color: transparent;
+</style>
 </head>
 <body>
-
 <div class="container">
-  <h2>Mulai Transaksi</h2>
-  <form>
-    <div class="form-group">
-      <label for="LinkProduk">Link Produk:</label>
-      <input type="url" class="form-control" id="Linkproduk" placeholder="www.ebay.com" name="LinkProduk">
-    </div>
-    <div class="form-group">
-      <label for="MataUang">Mata Uang:</label>
-      <select id="MataUang" class="form-control">
-		<option value selected disabled>Pilih Mata Uang</option>
-	  </select>
-    </div>
-    <div class="form-group">
-      <label for="HargaProduk">Harga Produk:</label>
-      <input type="number" class="form-control" id="HargaProduk" placeholder="100" name="HargaProduk">
-    </div>
-    <div class="form-group">
-      <div>
-		<p>==== ORDER ====<br>
-			- Harga Produk : <b><span id="mu1"></span> <span id="harpro"></span></b><br>
-			- Rate <span id="mu2"/> : <b >Rp <span id="rate"/></b><br>
-			- Fee Admin : <b >Rp <span id="fee"/></b><br>
-			- Kode Unik : <b >Rp <span id="rn"/></b><br>
-			TOTAL = Harga produk x Rate + Fee + Kode Unik
-		</p>
-		<h4>Rp <span id="total"/></h4>
-      </div>
-      <a id="orderku" target="_blank" type="submit" class="btn btn-default">Order via Whatsapp</a> 
-    </div>
-	<hr>
-	
-  </form>
+<h2>Mulai Transaksi</h2>
+<form>
+<div class="form-group">
+<label for="LinkProduk">Link Produk:</label>
+<input type="url" class="form-control" id="Linkproduk" placeholder="www.ebay.com" name="LinkProduk">
+</div>
+<div class="form-group">
+<label for="MataUang">Mata Uang:</label>
+<select id="MataUang" class="form-control">
+<option value selected disabled>Pilih Mata Uang</option>
+</select>
+</div>
+<div class="form-group">
+<label for="HargaProduk">Harga Produk:</label>
+<input type="number" class="form-control" id="HargaProduk" placeholder="100" name="HargaProduk">
+</div>
+<div class="form-group">
+<div>
+<p>==== ORDER ====<br>
+- Harga Produk : <b><span id="mu1"></span> <span id="harpro"></span></b><br>
+- Rate <b><span id="mu2" /></b> : <b>Rp <span id="rate" /></b><br>
+- Fee Admin : <b>Rp <span id="fee" /></b><br>
+- Kode Unik : <b>Rp <span id="rn" /></b><br>
+TOTAL = Harga produk x Rate + Fee + Kode Unik
+</p>
+<h4>Rp <span id="total" /></h4>
+</div>
+<a id="orderku" target="_blank" type="submit" class="btn btn-default">Order via Whatsapp</a>
+</div>
+</form>
 </div>
 <script>
 $(document).ready(function(){
