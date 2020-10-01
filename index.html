@@ -1,1 +1,106 @@
-GOTO https://kurs-btpn.vercel.app/api
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Form</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Mulai Transaksi</h2>
+  <form>
+    <div class="form-group">
+      <label for="LinkProduk">Link Produk:</label>
+      <input type="url" class="form-control" id="Linkproduk" placeholder="www.ebay.com" name="LinkProduk">
+    </div>
+    <div class="form-group">
+      <label for="MataUang">Mata Uang:</label>
+      <select id="MataUang" class="form-control">
+		<option value selected disabled>Pilih Mata Uang</option>
+	  </select>
+    </div>
+    <div class="form-group">
+      <label for="HargaProduk">Harga Produk:</label>
+      <input type="number" class="form-control" id="HargaProduk" placeholder="100" name="HargaProduk">
+    </div>
+    <div class="form-group">
+      <div>
+		<p>==== ORDER ====<br>
+			- Harga Produk : <b><span id="mu1"></span> <span id="harpro"></span></b><br>
+			- Rate <span id="mu2"/> : <b >Rp <span id="rate"/></b><br>
+			- Fee Admin : <b >Rp <span id="fee"/></b><br>
+			- Kode Unik : <b >Rp <span id="rn"/></b><br>
+			TOTAL = Harga produk x Rate + Fee + Kode Unik
+		</p>
+		<h4>Rp <span id="total"/></h4>
+      </div>
+      <a id="orderku" target="_blank" type="submit" class="btn btn-default">Order via Whatsapp</a> 
+    </div>
+	<hr>
+	
+  </form>
+</div>
+<script>
+$(document).ready(function(){
+var harga, mataUang, kodeUnik, rate, total, fee, link;
+  harga = $("#HargaProduk");
+  kodeUnik = Math.floor(Math.random() * 99);
+    $.getJSON("https://kurs-btpn.vercel.app/api", function(result){
+    console.log("success");
+      $.each(result, function(i, data){
+      $("#MataUang").append('<option value="'+data.currency+'" data-sell="'+data.sell+'">'+data.currency+'</option>');
+      });
+      //end getjson
+  });
+  function rupiah(uang){
+  uang = Math.ceil(uang);
+var	reverse = uang.toString().split('').reverse().join(''),
+	ribuan 	= reverse.match(/\d{1,3}/g);
+	ribuan	= ribuan.join('.').split('').reverse().join('');
+    return ribuan;
+    //ubah ke rupiah
+  }
+  $("#MataUang").change(function(){
+  rate = $(this).find(':selected').data('sell');
+  mataUang = $(this).val();
+  if(harga.val() == ""){
+  harga.val("1");
+  }
+  order();
+  //end #matauang
+  });
+  $("#HargaProduk").change(function(){
+  order();
+  //end hargaproduk
+  });
+  function order(){
+  link = $("#Linkproduk").val();
+  $("#mu1").text(mataUang);
+  $("#mu2").text(mataUang);
+  $("#harpro").text( harga.val());
+  $("#rate").text(rupiah(rate));
+  total = rate * harga.val();
+  if(total >= 500000){
+  fee = 3 / 100 * total;
+  } else {
+  fee = 35000;
+  }
+  $("#fee").text(rupiah(fee));
+  $("#rn").text(kodeUnik);
+  $("#total").text(rupiah(total + fee + kodeUnik));
+ $("#orderku").click(function(){
+  window.open("https://api.whatsapp.com/send?phone=6285298296919&text=JasaBayar.web.id%0D%0ARate+"+mataUang+"+Saat+ini+%3D+Rp.+"+rupiah(rate)+"%0D%0A%3D%3D%3D%3D+%2AORDER%2A+%3D%3D%3D%3D%0D%0A-+Link+Produk+%3A+"+encodeURIComponent(link)+"%0A-+Harga+Produk+%3A+"+harga.val()+"%24%0D%0A-+Fee+Admin+Fix+%26+Bank+%241+%3A+Rp.+"+rupiah(fee)+"%0D%0A-+Kode+Unik+%3A+Rp.+"+rupiah(kodeUnik)+"%0D%0ATOTAL+%3D+"+harga.val()+"+x+"+rupiah(rate)+"+%2B+"+rupiah(fee)+"+%2B+"+rupiah(kodeUnik)+"+%3D+%2ARp.+"+rupiah(total + fee + kodeUnik)+"%2A%0D%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0D%0ASilahkan+Transfer+sesuai+dengan+%2ATOTAL%2A+%28+%2ARp.+"+rupiah(total + fee + kodeUnik)+"%2A+%29+biaya+yang+tertera+pada+rekening+kami%0D%0ABank+BTPN+%3A+900-120-72564+a%2Fn+Muhammad+Izul+Wahidin", "_blank");
+  });
+  // end order
+  }
+  // end document ready
+});
+
+</script>
+</body>
+</html>
