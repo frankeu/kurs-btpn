@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +52,7 @@ $(document).ready(function(){
 var harga, mataUang, kodeUnik, rate, total, fee, link;
   harga = $("#HargaProduk");
   kodeUnik = Math.floor(Math.random() * 99);
-    $.getJSON("https://kurs-btpn.vercel.app/api", function(result){
+    $.getJSON("/api", function(result){
     console.log("success");
       $.each(result, function(i, data){
       $("#MataUang").append('<option value="'+data.currency+'" data-sell="'+data.sell+'">'+data.currency+'</option>');
@@ -83,7 +84,7 @@ var	reverse = uang.toString().split('').reverse().join(''),
   link = $("#Linkproduk").val();
   $("#mu1").text(mataUang);
   $("#mu2").text(mataUang);
-  $("#harpro").text( harga.val());
+  $("#harpro").text(rupiah(harga.val()));
   $("#rate").text(rupiah(rate));
   total = rate * harga.val();
   if(total >= 500000){
@@ -95,7 +96,7 @@ var	reverse = uang.toString().split('').reverse().join(''),
   $("#rn").text(kodeUnik);
   $("#total").text(rupiah(total + fee + kodeUnik));
  $("#orderku").click(function(){
-  window.open("https://api.whatsapp.com/send?phone=6283896680662&text=JasaBayar.web.id%0D%0ARate+"+mataUang+"+Saat+ini+%3D+Rp.+"+rupiah(rate)+"%0D%0A%3D%3D%3D%3D+%2AORDER%2A+%3D%3D%3D%3D%0D%0A-+Link+Produk+%3A+"+encodeURIComponent(link)+"%0A-+Harga+Produk+%3A+"+harga.val()+"%24%0D%0A-+Fee+Admin+Fix+%26+Bank+%241+%3A+Rp.+"+rupiah(fee)+"%0D%0A-+Kode+Unik+%3A+Rp.+"+rupiah(kodeUnik)+"%0D%0ATOTAL+%3D+"+harga.val()+"+x+"+rupiah(rate)+"+%2B+"+rupiah(fee)+"+%2B+"+rupiah(kodeUnik)+"+%3D+%2ARp.+"+rupiah(total + fee + kodeUnik)+"%2A%0D%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0D%0ASilahkan+Transfer+sesuai+dengan+%2ATOTAL%2A+%28+%2ARp.+"+rupiah(total + fee + kodeUnik)+"%2A+%29+biaya+yang+tertera+pada+rekening+kami%0D%0ABank+BTPN+%3A+900-120-72564+a%2Fn+Muhammad+Izul+Wahidin", "_blank");
+  window.open("https://api.whatsapp.com/send?phone=6283896680662&text=_https%3A%2F%2Fwww.JasaBayar.web.id_%0ARate%20"+mataUang+"%20Saat%20ini%20%3D%20Rp%20"+rupiah(rate)+"%0A%3D%3D%3D%3D%20%2AORDER%2A%20%3D%3D%3D%3D%0A-%20Link%20Produk%20%3A%20"+encodeURIComponent(link)+"%0A-%20Harga%20Produk%20%3A%20"+mataUang+" "+rupiah(harga.val())+"%0A-%20Fee%20Admin%20%3A%20Rp%20"+rupiah(fee)+"%0A-%20Kode%20Unik%20%3A%20Rp.%20"+rupiah(kodeUnik)+"%0ATOTAL%20%3D%20"+harga.val()+"%20x%20"+rupiah(rate)+"%20%2B%20"+rupiah(fee)+"%20%2B%20"+rupiah(kodeUnik)+"%20%3D%20%2ARp%20"+rupiah(total+fee+kodeUnik)+"%2A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0ASilahkan%20Transfer%20sesuai%20dengan%20%2ATOTAL%2A%3A%20%28%20%2ARp%20"+rupiah(total+fee+kodeUnik)+"%2A%20%29%20biaya%20yang%20tertera%20pada%20rekening%20kami%0ABank%20BTPN%20%3A%20900-120-72564%20a%2Fn%20Muhammad%20Izul%20Wahidin%22", "_blank");
   });
   // end order
   }
