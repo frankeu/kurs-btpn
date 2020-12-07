@@ -96,12 +96,15 @@ var	reverse = uang.toString().split('').reverse().join(''),
   $("#rn").text(kodeUnik);
   $("#total").text(rupiah(total + fee + kodeUnik));
  $("#orderku").click(function(){
+  
+  var watext = "?phone=6283896680662&text=_https%3A%2F%2Fwww.JasaBayar.web.id_%0ARate%20"+mataUang+"%20Saat%20ini%20%3D%20Rp%20"+rupiah(rate)+"%0A%3D%3D%3D%3D%20%2AORDER%2A%20%3D%3D%3D%3D%0A-%20Link%20Produk%20%3A%20"+encodeURIComponent(link)+"%0A-%20Harga%20Produk%20%3A%20"+mataUang+" "+rupiah(harga.val())+"%0A-%20Fee%20Admin%20%3A%20Rp%20"+rupiah(fee)+"%0A-%20Kode%20Unik%20%3A%20Rp.%20"+rupiah(kodeUnik)+"%0ATOTAL%20%3D%20"+harga.val()+"%20x%20"+rupiah(rate)+"%20%2B%20"+rupiah(fee)+"%20%2B%20"+rupiah(kodeUnik)+"%20%3D%20%2ARp%20"+rupiah(total+fee+kodeUnik)+"%2A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0ASilahkan%20Transfer%20sesuai%20dengan%20%2ATOTAL%2A%3A%20%28%20%2ARp%20"+rupiah(total+fee+kodeUnik)+"%2A%20%29%20biaya%20yang%20tertera%20pada%20rekening%20kami%0ABank%20BTPN%20%3A%20900-120-72564%20a%2Fn%20Muhammad%20Izul%20Wahidin%22";
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    var walink = 'whatsapp://send'
+    var walink = 'whatsapp://send'+watext;
+    window.open(walink);
   }else{
-    var walink = 'https://web.whatsapp.com/send'
+    var walink = 'https://web.whatsapp.com/send';
+    window.open(walink+watext, "_blank");
   }
-  window.open(walink+"?phone=6283896680662&text=_https%3A%2F%2Fwww.JasaBayar.web.id_%0ARate%20"+mataUang+"%20Saat%20ini%20%3D%20Rp%20"+rupiah(rate)+"%0A%3D%3D%3D%3D%20%2AORDER%2A%20%3D%3D%3D%3D%0A-%20Link%20Produk%20%3A%20"+encodeURIComponent(link)+"%0A-%20Harga%20Produk%20%3A%20"+mataUang+" "+rupiah(harga.val())+"%0A-%20Fee%20Admin%20%3A%20Rp%20"+rupiah(fee)+"%0A-%20Kode%20Unik%20%3A%20Rp.%20"+rupiah(kodeUnik)+"%0ATOTAL%20%3D%20"+harga.val()+"%20x%20"+rupiah(rate)+"%20%2B%20"+rupiah(fee)+"%20%2B%20"+rupiah(kodeUnik)+"%20%3D%20%2ARp%20"+rupiah(total+fee+kodeUnik)+"%2A%0A%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0ASilahkan%20Transfer%20sesuai%20dengan%20%2ATOTAL%2A%3A%20%28%20%2ARp%20"+rupiah(total+fee+kodeUnik)+"%2A%20%29%20biaya%20yang%20tertera%20pada%20rekening%20kami%0ABank%20BTPN%20%3A%20900-120-72564%20a%2Fn%20Muhammad%20Izul%20Wahidin%22", "_blank");
   });
   // end order
   }
